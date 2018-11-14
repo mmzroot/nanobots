@@ -15,14 +15,25 @@ class Ajax {
     }
 }
 
+class LoadBot {
+    constructor(file) {
+        let script = document.createElement("script")
+        script.type = "application/javascript"
+        script.src =
+            "https://cdn.jsdelivr.net/gh/mmzroot/nanobots/nanobots/" + file
+        document.querySelector("body").appendChild(script)
+    }
+}
+
 const nanobotsUrl =
     "https://api.github.com/repos/mmzroot/nanobots/contents/nanobots/"
 
 //get list of all nanobots
 let nanobotsList = new Ajax(nanobotsUrl, res => {
-    nanobots = JSON.parse(res)
+    const nanobots = JSON.parse(res)
     nanobots.forEach(element => {
-        console.log(element.name, element.path)
+        console.log(element.name)
+        new LoadBot(element.name)
     })
 })
 
