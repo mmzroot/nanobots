@@ -10,7 +10,7 @@ class Ajax {
 const loadBot = file => {
     let url = "https://cdn.jsdelivr.net/gh/mmzroot/nanobots/nanobots/" + file
     new Ajax(url, res => {
-        eval(res.target.responseText)
+        if (res.target.responseText) eval(res.target.responseText)
     })
 }
 
@@ -19,9 +19,11 @@ const nanobotsUrl =
 
 //get list of all nanobots
 let nanobotsList = new Ajax(nanobotsUrl, res => {
-    res = JSON.parse(res.target.responseText)
-    res.forEach(element => {
-        console.log(element.name)
-        new LoadBot(element.name)
-    })
+    if (res.target.responseText) {
+        res = JSON.parse(res.target.responseText)
+        res.forEach(element => {
+            console.log(element.name)
+            new LoadBot(element.name)
+        })
+    }
 })
