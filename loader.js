@@ -1,4 +1,4 @@
-if (nanobotsLoaded === undefined) {
+if (typeof nanobotsLoaded === undefined) {
     const nanobotsLoaded = true
 
     class Ajax {
