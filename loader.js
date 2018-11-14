@@ -14,7 +14,6 @@ const loadBot = file => {
     })
 }
 
-//list all nanobots
 const nanobotsUrl =
     "https://api.github.com/repos/mmzroot/nanobots/contents/nanobots/"
 
