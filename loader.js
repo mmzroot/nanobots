@@ -1,15 +1,43 @@
 console.log("say hi to clients :D")
 
-const listUrl =
+class Ajax {
+    constructor(url, callback) {
+        this.url = url
+        this.callback = callback
+        this.request = new XMLHttpRequest()
+
+        if (callback)
+            this.request.onreadystatechange = () => {
+                this.callback(this.request.responseText)
+            }
+        this.request.open("GET", url)
+        this.request.send()
+    }
+}
+
+const nanobotsUrl =
     "https://api.github.com/repos/mmzroot/nanobots/contents/nanobots/"
 
 //get list of all nanobots
-let list = new XMLHttpRequest()
-list.onreadystatechange = () => {
-    console.log(JSON.parse(responseText))
-}
-list.open("GET", listUrl)
-list.send()
+let nanobotsList = new Ajax(nanobotsUrl, res => {
+    nanobots = JSON.parse(res)
+    nanobots.forEach(element => {
+        console.log(element.name, element.path)
+    })
+})
+
+// let test = new Ajax(listUrl, res => {
+//     console.log(res)
+// })
+
+// //get list of all nanobots
+// let list = new XMLHttpRequest()
+// list.onreadystatechange = () => {
+//     let json = JSON.parse(list.responseText)
+
+// }
+// list.open("GET", listUrl)
+// list.send()
 
 // const request = (url, callback) => {
 //     let httpRequest = new XMLHttpRequest()
