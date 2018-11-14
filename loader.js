@@ -1,13 +1,14 @@
 console.log("say hi to clients :D")
 
-const list = "https://api.github.com/repos/mmzroot/nanobots/contents/nanobots/"
+const listUrl =
+    "https://api.github.com/repos/mmzroot/nanobots/contents/nanobots/"
 
 //get list of all nanobots
 let list = new XMLHttpRequest()
 list.onreadystatechange = () => {
     console.log(JSON.parse(responseText))
 }
-list.open("GET", list)
+list.open("GET", listUrl)
 list.send()
 
 // const request = (url, callback) => {
