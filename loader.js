@@ -8,7 +8,9 @@ class Ajax {
 }
 
 const loadBot = file => {
-    let url = "https://cdn.jsdelivr.net/gh/mmzroot/nanobots/nanobots/" + file
+    let url =
+        "https://raw.githubusercontent.com/mmzroot/nanobots/master/nanobots/" +
+        file
     new Ajax(url, res => {
         if (res.target.responseText) eval(res.target.responseText)
     })
